@@ -48,7 +48,7 @@ const getStringLength = (value) => value.length;
  *   'John','Doe'      => 'Hello, John Doe!'
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
-const getStringFromTemplate = (firstName, lastName) => 'Hello, ' + firstName + ' ' + lastName;
+const getStringFromTemplate = (firstName, lastName) => `Hello, ${firstName} ${lastName}!`;
 
 /**
  * Extracts a name from template string 'Hello, First_Name Last_Name!'.
@@ -60,7 +60,7 @@ const getStringFromTemplate = (firstName, lastName) => 'Hello, ' + firstName + '
  *   'Hello, John Doe!' => 'John Doe'
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
-const extractNameFromTemplate = (value) => value.slice(7,-1);
+const extractNameFromTemplate = (value) => value.slice(7, -1);
 
 
 /**
@@ -86,7 +86,7 @@ const getFirstChar = (value) => value.charAt(0);
  *   'cat'              => 'cat'
  *   '\tHello, World! ' => 'Hello, World!'
  */
-const removeLeadingAndTrailingWhitespaces = (value) => value.replaceAll(/[' '\t]/g, '');
+const removeLeadingAndTrailingWhitespaces = (value) => value.trim();
 
 /**
  * Returns a string that repeated the specified number of times.
@@ -157,7 +157,9 @@ const convertToUpperCase = (str) => str.toUpperCase();
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-const extractEmails = (str) => str.slice(); 
+function extractEmails(/* str */) {
+  throw new Error('Not implemented');
+}
 
 /**
  * Returns the string representation of rectangle with specified width and height
@@ -220,7 +222,17 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-const isString = (value) => typeof value == 'string';
+const isString = (value) => {
+  try {
+    value.toString();
+    if (value.includes('object') || value.length === 0) {
+      return false;
+    }
+    return true;
+  } catch (err) {
+    return false;
+  }
+};
 
 
 /**
@@ -248,8 +260,8 @@ const isString = (value) => typeof value == 'string';
  *   'K♠' => 51
  */
 function getCardId(value) {
-  const cards = ['A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣','A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦','A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥','A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠'];
-  cards.indexOf(value)
+  const cards = ['A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣', 'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦', 'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥', 'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠'];
+  return cards.indexOf(value);
 }
 
 

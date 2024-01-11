@@ -47,7 +47,7 @@ const getCircleCircumference = (radius) => 2 * Math.PI * radius;
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-const getAverage = (value1, value2) => (value1 + value2) / 2
+const getAverage = (value1, value2) => (value1 / 2) + (value2 / 2);
 
 /**
  * Returns a distance between two points by cartesian coordinates.
@@ -64,7 +64,7 @@ const getAverage = (value1, value2) => (value1 + value2) / 2
  *   (0,0) (1,0)    => 1
  *   (-5,0) (10,-10) => 18.027756377319946
  */
-const getDistanceBetweenPoints = (x1, y1, x2, y2) => Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+const getDistanceBetweenPoints = (x1, y1, x2, y2) => Math.sqrt(((x2 - x1) ** 2) + ((y2 - y1) ** 2));
 
 /**
  * Returns a root of linear equation a*x + b = 0 given by coefficients a and b.
@@ -78,7 +78,7 @@ const getDistanceBetweenPoints = (x1, y1, x2, y2) => Math.sqrt(Math.pow(x2 - x1,
  *   x + 8 = 0       => -8
  *   5*x = 0         => 0
  */
-const getLinearEquationRoot = (a, b) => b * -1 / a
+const getLinearEquationRoot = (a, b) => (b * -1) / a;
 
 
 /**
@@ -129,7 +129,7 @@ const getLastDigit = (value) => value % 10;
  *     '37'     => 37
  * '-525.5'     => -525.5
  */
-const parseNumberFromString = (value) => parseInt(value); 
+const parseNumberFromString = (value) => Number(value);
 
 /**
  * Returns a diagonal length of the rectangular parallelepiped given by its sides a,b,c.
@@ -144,7 +144,7 @@ const parseNumberFromString = (value) => parseInt(value);
  *   3,3,3   => 5.196152422706632
  *   1,2,3   => 3.741657386773941
  */
-const getParallelepipedDiagonal = (a, b, c) => Math.sqrt(a ^ 2 + b ^ 2 + c ^2)
+const getParallelepipedDiagonal = (a, b, c) => Math.sqrt(a ** 2 + b ** 2 + c ** 2);
 
 
 /**
@@ -204,7 +204,14 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-const toNumber = (value, def) => toNumber(value, def); 
+function toNumber(value, def) {
+  const res = Number(value);
+  if (Number.isNaN(res)) {
+    return def;
+  }
+  return res;
+}
+
 
 module.exports = {
   getRectangleArea,

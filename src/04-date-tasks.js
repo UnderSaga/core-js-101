@@ -22,7 +22,7 @@
 const parseDataFromRfc2822 = (value) => {
   const x = Date.parse(value);
   Date(x);
-}
+};
 
 /**
  * Parses an ISO 8601 string date representation into date value
@@ -38,7 +38,7 @@ const parseDataFromRfc2822 = (value) => {
 const parseDataFromIso8601 = (value) => {
   const x = Date.parse(value);
   return Date(x);
-}
+};
 
 /**
  * Returns true if specified date is leap year and false otherwise
@@ -55,10 +55,8 @@ const parseDataFromIso8601 = (value) => {
  *    Date(2015,1,1)    => false
  */
 function isLeapYear(date) {
-  if(date.getFullYear() % 4 == 0 && date % 100 != 0 || date % 400 == 0)
-    return true
-  else
-    return false
+  if ((date.getFullYear() % 4 === 0 && date % 100 !== 0) || date % 400 === 0) { return true; }
+  return false;
 }
 
 
